@@ -3,7 +3,7 @@ const db = require('./connection');
 const orm = {
     all: async function(table) {
         try {
-            const result = db.query(`SELECT * FROM ${table}`)
+            const result = await db.query(`SELECT * FROM ${table}`)
             return result;
         } catch (error) {
             throw error;
@@ -11,7 +11,7 @@ const orm = {
     },
     selectWhere: async function(table, condition) {
         try {
-            const result = db.query(`SELECT * FROM ${table} WHERE ${condition}`)
+            const result = await db.query(`SELECT * FROM ${table} WHERE ${condition}`)
             return result;
         } catch (error) {
             throw error;
@@ -41,7 +41,6 @@ const orm = {
             throw error;
         }
     }
-    
 };
 
 module.exports = orm;
