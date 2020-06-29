@@ -7,7 +7,15 @@ router.get('/all', (req, res) => {
     db.Todo.findAll().then(todos => res.json(todos));
 });
 
-// Get a specific task
+// Post a new todo
+router.post('/new', (req, res) => {
+    db.Todo.create({
+        task_header: req.body.task_header,
+        task_details: req.body.task_details,
+        status: req.body.status,
+        folder: req.body.folder
+    }).then(submittedTodo => res.send(submittedTodo));
+});
 
 
 
