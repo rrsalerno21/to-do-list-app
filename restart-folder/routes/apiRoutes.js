@@ -17,6 +17,15 @@ router.post('/new', (req, res) => {
     }).then(submittedTodo => res.send(submittedTodo));
 });
 
+// Get a single to do by the id
+router.get('/find/:id', (req, res) => {
+    db.Todo.findAll({
+        where: {
+            id: req.params.id
+        }
+    }).then(todo => res.json(todo));
+})
+
 
 
 module.exports = router;
