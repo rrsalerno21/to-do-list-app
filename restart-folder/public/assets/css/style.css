@@ -1,0 +1,75 @@
+/* Body Styling */
+body {
+    font-family: 'Work Sans', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+}
+
+/* h1 styling */
+h1 {
+    font-size: 48px;
+    font-weight: 500;
+}
+
+/* h2 styling */
+h2 {
+    font-size: 24px;
+}
+
+/* h3 styling */
+h3 {
+    font-size: 21px;
+}
+
+/* Header Styling */
+header {
+    text-align: center;
+    padding: 20px;
+    background-image: linear-gradient(rgb(28, 210, 242), rgb(68, 0, 204));
+    color: #ffffff;
+}
+
+/* --- */
+
+
+/* --- */
+
+
+/* --- */
+
+
+/* --- */
+
+
+/* --- */
+
+
+/* --- */
+
+
+/* --- */
+
+
+/* --- */
+
+
+/* --- */
+
+
+/* Mobile Styling */
+@media only screen and (max-width: 768px) {
+    /* adjust h1 font size */
+    h1 {
+        font-size: 32px;
+    }
+
+    /* --- */
+
+
+    /* --- */
+
+
+    /* --- */
+
+
+}
