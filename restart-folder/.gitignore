@@ -1,4 +1,4 @@
 node_modules/
 private.js
 .env
-config/config.json
+config/
