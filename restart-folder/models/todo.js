@@ -1,8 +1,7 @@
 module.exports = (sequelize, DataTypes) => {
     const Todo = sequelize.define('Todo', {
         task_header: {
-            type: DataTypes.STRING,
-            primaryKey: true
+            type: DataTypes.STRING
         },
         task_details: {
             type: DataTypes.STRING
