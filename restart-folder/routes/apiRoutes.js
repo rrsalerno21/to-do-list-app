@@ -41,6 +41,12 @@ router.put('/edit', (req, res) => {
     ).then(()=> res.send('Success'));
 })
 
-
+router.delete('/delete/:id', (req, res) => {
+    db.Todo.destroy({
+        where: {
+            id: req.params.id
+        }
+    }).then(() => res.send('Destroyed'));
+})
 
 module.exports = router;
