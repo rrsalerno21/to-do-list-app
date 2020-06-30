@@ -95,4 +95,43 @@ $('.delete-task-btn').on('click', function(event) {
         console.log('Successfully deleted object')
         location.reload();
     })
+});
+
+// mark task as complete
+$('.complete-task-btn').on('click', function(event) {
+    let taskID = $(this).data('taskid');
+
+    let editedTask = {
+        id: taskID,
+        status: true
+    }
+
+    $.ajax({
+        url: '/api/edit-status',
+        method: 'PUT',
+        data: editedTask
+    }).then(() => {
+        console.log('status update successful');
+        location.reload();
+    })
 })
+
+// mark a task as incomplete
+$('.undo-task-btn').on('click', function(event) {
+    let taskID = $(this).data('taskid');
+
+    let editedTask = {
+        id: taskID,
+        status: false
+    }
+
+    $.ajax({
+        url: '/api/edit-status',
+        method: 'PUT',
+        data: editedTask
+    }).then(() => {
+        console.log('status update successful');
+        location.reload();
+    })
+})
+

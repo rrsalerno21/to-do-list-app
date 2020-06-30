@@ -39,8 +39,20 @@ router.put('/edit', (req, res) => {
             where: {id: req.body.id}
         }
     ).then(()=> res.send('Success'));
+});
+
+// Update a to do's status
+router.put('/edit-status', (req, res) => {
+
+    db.Todo.update({
+        status: req.body.status,
+    }, 
+    {
+        where: {id: req.body.id}
+    }).then(() => res.send('Success'));
 })
 
+// Delete a task
 router.delete('/delete/:id', (req, res) => {
     db.Todo.destroy({
         where: {
