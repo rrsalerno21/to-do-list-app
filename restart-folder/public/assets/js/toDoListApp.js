@@ -59,7 +59,7 @@ $('#modal-act-button').on('click', function(event) {
             status: taskStatus,
             folder: 'Standard'
         }
-        
+
         // do a post to the server and then render the page
         $.post('/api/new', newTask)
             .then(() => location.reload());
@@ -143,7 +143,25 @@ $('.undo-task-btn').on('click', function(event) {
     })
 })
 
+// clear all tasks
+$('#clear-all-btn').on('click', function(event) {
+    let areYouSure = confirm('Are you sure you want to delete all of your tasks?');
 
+    if (areYouSure) {
+        $.ajax({
+            url: '/api/delete-all',
+            method: 'DELETE'
+        }).then(() => {
+            console.log('All items successfully deleted')
+            location.reload();
+        })
+    } else {
+        return;
+    }
+})
+
+
+// function to play with
 async function renderAfterChange() {
     // get updated data
     const updatedData = await $.get('/api/all');

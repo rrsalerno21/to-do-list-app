@@ -61,4 +61,11 @@ router.delete('/delete/:id', (req, res) => {
     }).then(() => res.send('Destroyed'));
 })
 
+// Delete all tasks
+router.delete('/delete-all', (req, res) => {
+    db.Todo.destroy({
+        truncate: true
+    }).then(() => res.send('Destroyed All'));
+});
+
 module.exports = router;
