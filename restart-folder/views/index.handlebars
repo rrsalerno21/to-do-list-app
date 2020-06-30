@@ -2,8 +2,6 @@
     <h1>To-Do List App</h1>
 </header>
 
-
-
 <div class="container my-3">
     <div class="d-flex w-100 justify-content-center">
         <!-- Button trigger modal -->
@@ -14,8 +12,8 @@
         <button type="button" class="btn btn-secondary mx-3" id="clear-all-btn">
             Clear all tasks
         </button>
-
     </div>
+    
     <!-- BEGIN ACTIVE FOLDER HERE -->
     <div class="accordion my-3" id="F1Active">
 
@@ -32,25 +30,11 @@
             <div id="collapseF1Active" class="collapse show" aria-labelledby="F1ActHeading" data-parent="#F1Active">
                 <div class="card-body">
                     <div class="list-group">
-
-                        <div class="list-group-item list-group-item-action">
-                            <div class="d-flex w-100 justify-content-between">
-                                <h5 class="mb-1">Task 1</h5>
-                                <small>3 days ago</small>
-                            </div>
-
-                            <div class="d-sm-flex w-100 justify-content-between">
-                                <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget
-                                    risus varius
-                                    blandit.</p>
-                                <span class="icon-container d-flex  justify-content-center">
-                                    <i class="btn fas fa-check-square text-success icon-med-size"></i>
-                                    <i class="btn fas fa-edit text-muted icon-med-size" type="button"
-                                        data-toggle="modal" data-target="#taskModal" data-taskId=""></i>
-                                    <i class="btn fas fa-trash text-danger icon-med-size"></i>
-                                </span>
-                            </div>
-                        </div>
+                        {{#each todos}}
+                            {{#unless this.status}}
+                                {{> task-block status=false}}
+                            {{/unless}}
+                        {{/each}}
                     </div>
                 </div>
             </div>
@@ -76,25 +60,11 @@
                 data-parent="#F1Completed">
                 <div class="card-body">
                     <div class="list-group">
-
-                        <div class="list-group-item list-group-item-action">
-                            <div class="d-flex w-100 justify-content-between">
-                                <h5 class="mb-1">Task 4</h5>
-                                <small>3 days ago</small>
-                            </div>
-
-                            <div class="d-sm-flex w-100 justify-content-between">
-                                <p class="mb-1"><del>Donec id elit non mi porta gravida at eget metus. Maecenas sed diam
-                                        eget risus varius
-                                        blandit.</del></p>
-                                <span class="icon-container d-flex  justify-content-center">
-                                        <i class="btn fas fa-undo text-success icon-med-size"></i>
-                                        <i class="btn fas fa-edit text-muted icon-med-size" type="button"
-                                        data-toggle="modal" data-target="#taskModal" data-taskId=""></i>
-                                    <i class="btn fas fa-trash text-danger icon-med-size"></i>
-                                </span>
-                            </div>
-                        </div>
+                        {{#each todos}}
+                            {{#if this.status}}
+                                {{> task-block status=true}}
+                            {{/if}}
+                        {{/each}}
                     </div>
                 </div>
             </div>

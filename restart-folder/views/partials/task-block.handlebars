@@ -1,0 +1,16 @@
+<div class="list-group-item list-group-item-action">
+    <div class="d-flex w-100 justify-content-between">
+        <h5 class="mb-1">{{this.task_header}}</h5>
+        <small>!!!!!!3 days ago</small>
+    </div>
+
+    <div class="d-sm-flex w-100 justify-content-between">
+        <p class="mb-1">{{#if this.status}} <del>{{this.task_details}}</del> {{else}} {{this.task_details}} {{/if}}</p>
+        <span class="icon-container d-flex  justify-content-center">
+            {{#if this.status}}<i data-taskId="{{this.id}}" class="btn fas fa-undo text-success icon-med-size undo-task-btn"></i>
+            {{else}}<i data-taskId="{{this.id}}" class="btn fas fa-check-square text-success icon-med-size complete-task-btn"></i>{{/if}}
+            <i class="btn fas fa-edit text-muted icon-med-size edit-task-btn" type="button" data-toggle="modal" data-target="#taskModal" data-taskId="{{this.id}}"></i>
+            <i class="btn fas fa-trash text-danger icon-med-size delete-task-btn" data-taskId="{{this.id}}"></i>
+        </span>
+    </div>
+</div>
