@@ -85,14 +85,14 @@ $('#modal-act-button').on('click', function(event) {
     }
 });
 
-// $('.delete-task-btn').on('click', function(event) {
-//     console.log('you clicked me');
-//     console.log(event.relatedTarget)
-//     $.ajax({
-//         url: '/api/delete/' + id,
-//         method: 'DELETE'
-//     }).then(data => {
-//         console.log(data)
-//     })
-// })
-
+$('.delete-task-btn').on('click', function(event) {
+    console.log('you clicked me');
+    let id = $(this).data('taskid');
+    $.ajax({
+        url: '/api/delete/' + id,
+        method: 'DELETE'
+    }).then(() => {
+        console.log('Successfully deleted object')
+        location.reload();
+    })
+})
