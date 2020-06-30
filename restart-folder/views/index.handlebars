@@ -29,7 +29,7 @@
 
             <div id="collapseF1Active" class="collapse show" aria-labelledby="F1ActHeading" data-parent="#F1Active">
                 <div class="card-body">
-                    <div class="list-group">
+                    <div class="list-group" id="activeListDiv">
                         {{#each todos}}
                             {{#unless this.status}}
                                 {{> task-block status=false}}
@@ -59,7 +59,7 @@
             <div id="collapseF1Completed" class="collapse" aria-labelledby="F1DeletedHeading"
                 data-parent="#F1Completed">
                 <div class="card-body">
-                    <div class="list-group">
+                    <div class="list-group" id="completedListDiv">
                         {{#each todos}}
                             {{#if this.status}}
                                 {{> task-block status=true}}
