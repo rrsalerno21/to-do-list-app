@@ -17,7 +17,8 @@ $('#taskModal').on('show.bs.modal', function (event) {
         
         $('#modal-act-button')
             .text('Edit Task')
-            .attr('data-method', 'EDIT');
+            .attr('data-method', 'EDIT')
+            .attr('data-id', taskID);
 
         $.get(`/api/find/${taskID}`, todo => {
             
@@ -40,34 +41,47 @@ $('#modal-act-button').on('click', function(event) {
     // determine if we're adding or editing
     //not sure why, but doing a jquery button.data('method') here locks in the initial value after first click
     var method = button[0].dataset.method
+    
+    // figure out the status of the task
+    let taskStatus;
+    if ($('.status-incomplete').is(':checked')) {
+        taskStatus = false;
+    } else if ($('.status-complete').is(':checked')) {
+        taskStatus = true
+    }
 
     // if adding
     if (method === 'ADD') {
-        // add the post
-        console.log('posting time');
-        
-        // figure out the status of the task
-        let taskStatus;
-        if ($('.status-incomplete').is(':checked')) {
-            taskStatus = false;
-        } else if ($('.status-complete').is(':checked')) {
-            taskStatus = true
-        }
-
         // create the new task as an object
-        const newTask = {
+            const newTask = {
+                task_header: $(".task-name").val().trim(),
+                task_details: $(".task-body").val().trim(),
+                status: taskStatus,
+                folder: 'Standard'
+            }
+        // do a post to the server and then reload the page
+        $.post('/api/new', newTask)
+            .then(() => location.reload());
+
+    } else if (method === 'EDIT') {
+        // edit the post
+        const editedTask = {
+            id: $('#modal-act-button').data('id'),
             task_header: $(".task-name").val().trim(),
             task_details: $(".task-body").val().trim(),
             status: taskStatus,
             folder: 'Standard'
         }
 
-        // do a post to the server and then reload the page
-        $.post('/api/new', newTask)
-            .then(() => location.reload())
-    } else if (method === 'EDIT') {
-        // edit the post
-        console.log('updating time')
+        // make a put request
+        $.ajax({
+            url: '/api/edit',
+            method: 'PUT',
+            data: editedTask
+        }).then(() => {
+            console.log('updated task successfully')
+            location.reload();
+        });
     }
 });
 
