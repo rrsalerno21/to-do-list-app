@@ -25,21 +25,29 @@ h3 {
 header {
     text-align: center;
     padding: 20px;
-    background-image: linear-gradient(rgb(28, 210, 242), rgb(68, 0, 204));
+    background-image: linear-gradient(rgb(78, 242, 28), rgb(2, 172, 16));
     color: #ffffff;
 }
 
-/* --- */
+/* Icon font-sizes */
+.icon-med-size {
+    font-size: 32px;
+    transition: 0.25s;
+
+}
+/* Icon hover color */
+.icon-med-size:hover {
+    font-size: 34px;
+}
 
 
-/* --- */
+/* Gradient Background */
+.my-gradient {
+    background: linear-gradient(rgb(78, 242, 28), rgb(2, 172, 16));
+    border-color: linear-gradient(rgb(78, 242, 28), rgb(2, 172, 16));
+}
 
-
-/* --- */
-
-
-/* --- */
-
+/* Align Labels */
 
 /* --- */
 
@@ -63,8 +71,10 @@ header {
         font-size: 32px;
     }
 
-    /* --- */
-
+    /* Center task content */
+    .task-content i {
+        text-align: center;
+    }
 
     /* --- */
 

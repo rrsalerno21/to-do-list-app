@@ -1,0 +1,168 @@
+<header>
+    <h1>To-Do List App</h1>
+</header>
+
+
+
+<div class="container my-3">
+    <div class="d-flex w-100 justify-content-center">
+        <!-- Button trigger modal -->
+        <button type="button" class="btn my-gradient text-white mx-3" data-toggle="modal" data-target="#taskModal">
+            Add To-Do
+        </button>
+
+        <button type="button" class="btn btn-secondary mx-3" id="clear-all-btn">
+            Clear all tasks
+        </button>
+
+    </div>
+    <!-- BEGIN ACTIVE FOLDER HERE -->
+    <div class="accordion my-3" id="F1Active">
+
+        <div class="card">
+            <div class="card-header" id="F1ActHeading">
+                <h2 class="mb-0">
+                    <button class="btn btn-light btn-block text-left" type="button" data-toggle="collapse"
+                        data-target="#collapseF1Active" aria-expanded="true" aria-controls="collapseF1Active">
+                        Active <span class="badge badge-light my-gradient text-white">4</span>
+                    </button>
+                </h2>
+            </div>
+
+            <div id="collapseF1Active" class="collapse show" aria-labelledby="F1ActHeading" data-parent="#F1Active">
+                <div class="card-body">
+                    <div class="list-group">
+
+                        <div class="list-group-item list-group-item-action">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h5 class="mb-1">Task 1</h5>
+                                <small>3 days ago</small>
+                            </div>
+
+                            <div class="d-sm-flex w-100 justify-content-between">
+                                <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget
+                                    risus varius
+                                    blandit.</p>
+                                <span class="icon-container d-flex  justify-content-center">
+                                    <i class="btn fas fa-check-square text-success icon-med-size"></i>
+                                    <i class="btn fas fa-edit text-muted icon-med-size" type="button"
+                                        data-toggle="modal" data-target="#taskModal" data-taskId=""></i>
+                                    <i class="btn fas fa-trash text-danger icon-med-size"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END ACTIVE FOLDER HERE-->
+
+
+    <!-- BEGIN COMPLETED FOLDER HERE -->
+    <div class="accordion my-3" id="F1Completed">
+
+        <div class="card">
+            <div class="card-header" id="F1CompletedHeading">
+                <h2 class="mb-0">
+                    <button class="btn btn-light btn-block text-left" type="button" data-toggle="collapse"
+                        data-target="#collapseF1Completed" aria-expanded="true" aria-controls="collapseF1Completed">
+                        Completed <span class="badge badge-light my-gradient text-white">4</span>
+                    </button>
+                </h2>
+            </div>
+
+            <div id="collapseF1Completed" class="collapse" aria-labelledby="F1DeletedHeading"
+                data-parent="#F1Completed">
+                <div class="card-body">
+                    <div class="list-group">
+
+                        <div class="list-group-item list-group-item-action">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h5 class="mb-1">Task 4</h5>
+                                <small>3 days ago</small>
+                            </div>
+
+                            <div class="d-sm-flex w-100 justify-content-between">
+                                <p class="mb-1"><del>Donec id elit non mi porta gravida at eget metus. Maecenas sed diam
+                                        eget risus varius
+                                        blandit.</del></p>
+                                <span class="icon-container d-flex  justify-content-center">
+                                    <i class="btn fas fa-check-square text-success icon-med-size"></i>
+                                    <i class="btn fas fa-edit text-muted icon-med-size" type="button"
+                                        data-toggle="modal" data-target="#taskModal" data-taskId=""></i>
+                                    <i class="btn fas fa-trash text-danger icon-med-size"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END COMPLETED FOLDER HERE-->
+
+    <!-- BEGIN MODAL HERE -->
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="taskModal" tabindex="-1" role="dialog" aria-labelledby="taskModalTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="taskModalTitle">ADD &/OR UPDATE Task</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-container">
+                        <div class="form-group">
+                            <label for="task_header"><strong>Task Name:</strong> </label>
+                            <input class="form-control" type="text" name="task_header">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="task_details"><strong>Task Details:</strong></label>
+                            <textarea class="form-control" name="task_details"></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="task_status"><strong>Is this task already completed?</strong></label>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="status" id="status_no" value="0"
+                                    checked>
+                                <label class="form-check-label" for="status_no">No</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="status" id="status_yes" value="1">
+                                <label class="form-check-label" for="status_yes">Yes</label>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn my-gradient text-white" id="save">Add Task</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+    integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+    crossorigin="anonymous"></script>
+<script src="assets/js/toDoListApp.js"></script>
