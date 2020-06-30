@@ -33,6 +33,44 @@ $('#taskModal').on('show.bs.modal', function (event) {
     }
 });
 
+// Add or edit a task
+$('#modal-act-button').on('click', function(event) {
+    var button = $('#modal-act-button');
+
+    // determine if we're adding or editing
+    //not sure why, but doing a jquery button.data('method') here locks in the initial value after first click
+    var method = button[0].dataset.method
+
+    // if adding
+    if (method === 'ADD') {
+        // add the post
+        console.log('posting time');
+        
+        // figure out the status of the task
+        let taskStatus;
+        if ($('.status-incomplete').is(':checked')) {
+            taskStatus = false;
+        } else if ($('.status-complete').is(':checked')) {
+            taskStatus = true
+        }
+
+        // create the new task as an object
+        const newTask = {
+            task_header: $(".task-name").val().trim(),
+            task_details: $(".task-body").val().trim(),
+            status: taskStatus,
+            folder: 'Standard'
+        }
+
+        // do a post to the server and then reload the page
+        $.post('/api/new', newTask)
+            .then(() => location.reload())
+    } else if (method === 'EDIT') {
+        // edit the post
+        console.log('updating time')
+    }
+});
+
 // $('.delete-task-btn').on('click', function(event) {
 //     console.log('you clicked me');
 //     console.log(event.relatedTarget)
