@@ -5,7 +5,9 @@ const Serializer = require('sequelize-to-json');
 
 // Root to get all data needed to render
 router.get('/', (req, res) => {
-    db.Todo.findAll().then(todos => {
+    db.Todo.findAll({
+        order: [['due_date']]
+    }).then(todos => {
         // Make todos into a JSON object
         let todosAsJSON = Serializer.serializeMany(todos, db.Todo, {include: ['@all']});
         
