@@ -34,7 +34,8 @@ router.put('/edit', (req, res) => {
             task_header: req.body.task_header,
             task_details: req.body.task_details,
             status: req.body.status,
-            folder: req.body.folder
+            folder: req.body.folder,
+            due_date: req.body.due_date
         }, 
         {
             where: {id: req.body.id}

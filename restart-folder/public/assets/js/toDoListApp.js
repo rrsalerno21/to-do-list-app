@@ -230,6 +230,3 @@ async function renderAfterChange() {
         $('.modal-header button').click();
     }
 }
-
-console.log(new Date());
-
