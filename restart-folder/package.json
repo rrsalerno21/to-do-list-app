@@ -17,6 +17,7 @@
   "dependencies": {
     "express": "^4.17.1",
     "express-handlebars": "^4.0.4",
+    "moment": "^2.27.0",
     "mysql2": "^2.1.0",
     "sequelize": "^5.22.2",
     "sequelize-cli": "^5.5.1",
