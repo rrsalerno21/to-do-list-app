@@ -21,9 +21,12 @@ $('#taskModal').on('show.bs.modal', function (event) {
             .attr('data-id', taskID);
 
         $.get(`/api/find/${taskID}`, todo => {
+            console.log(todo[0].due_date);
+            let dateFormat = todo[0].due_date.split('T')[0];
             
             modal.find('.task-name').val(todo[0].task_header);
             modal.find('.task-body').val(todo[0].task_details);
+            modal.find('.task-due-date').val(dateFormat);
             
             if (todo[0].status) {
                 $('.status-complete').click();
@@ -57,7 +60,8 @@ $('#modal-act-button').on('click', function(event) {
             task_header: $(".task-name").val().trim(),
             task_details: $(".task-body").val().trim(),
             status: taskStatus,
-            folder: 'Standard'
+            folder: 'Standard',
+            due_date: $(".task-due-date").val()
         }
 
         // do a post to the server and then render the page
@@ -72,7 +76,8 @@ $('#modal-act-button').on('click', function(event) {
             task_header: $(".task-name").val().trim(),
             task_details: $(".task-body").val().trim(),
             status: taskStatus,
-            folder: 'Standard'
+            folder: 'Standard',
+            due_date: $(".task-due-date").val()
         }
 
         // make a put request
@@ -226,5 +231,5 @@ async function renderAfterChange() {
     }
 }
 
-
+console.log(new Date());
 

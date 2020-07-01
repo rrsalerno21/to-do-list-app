@@ -12,6 +12,9 @@ module.exports = (sequelize, DataTypes) => {
         folder: {
             type: DataTypes.STRING,
             defaultValue: 'Standard',
+        },
+        due_date: {
+            type: DataTypes.DATE
         }
     }, {
         freezeTableName: true

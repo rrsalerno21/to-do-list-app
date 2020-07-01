@@ -90,12 +90,17 @@
                     <div class="form-container">
                         <div class="form-group">
                             <label for="task_header"><strong>Task Name:</strong> </label>
-                            <input class="form-control task-name" type="text" name="task_header">
+                            <input class="form-control task-name" id="task-name" type="text" name="task_header">
                         </div>
 
                         <div class="form-group">
                             <label for="task_details"><strong>Task Details:</strong></label>
                             <textarea class="form-control task-body" name="task_details"></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="task_due_date"><strong>Due Date:</strong></label>
+                            <input type="date" class="form-control task-due-date" name="task_due_date">
                         </div>
 
                         <div class="form-group">
