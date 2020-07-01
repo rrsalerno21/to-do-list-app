@@ -1,5 +1,13 @@
 $(document).ready(() => {
 
+    // Alter color of date due
+    let dueDateArray = $('.display-due-date')
+    
+
+    dueDateArray.css('color', (date) => {
+
+    })
+
     // Alter Modal based on Add or Edit
     $('#taskModal').on('show.bs.modal', function (event) {
         var button = $(event.relatedTarget);
@@ -14,7 +22,9 @@ $(document).ready(() => {
                 .attr('data-method', 'ADD');
             
             // set today's time
-            $(".task-due-date").val('2020-07-01')
+            let today = getTodaysDate();
+            $(".task-due-date").val(today)
+
         } else if (type === 'EDIT') {
             console.log('query time');
             modal.find('.modal-title').text('EDIT TASK');
@@ -169,4 +179,22 @@ $(document).ready(() => {
             return;
         }
     })
+
+    // Helper functions
+    function getTodaysDate() {
+        let time = new Date();
+        let date = time.getDate();
+        let month = time.getMonth() + 1;
+        let year = time.getFullYear();
+        
+        if (month < 10) {
+            month = '0' + month;
+        }
+
+        if (date < 10) {
+            date = '0' + date;
+        }
+        
+        return `${year}-${month}-${date}`
+    }
 })
