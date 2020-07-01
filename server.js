@@ -22,7 +22,7 @@ const htmlRoutes = require('./routes/htmlRoutes');
 app.use('/api', apiRoutes);
 app.use(htmlRoutes)
 
-db.sequelize.sync().then(() => {
+db.sequelize.sync({force: true}).then(() => {
     app.listen(PORT, () => {
         console.log(`listening on: http://localhost:${PORT}`);
     });

@@ -9,6 +9,7 @@ router.get('/all', (req, res) => {
 
 // Post a new todo
 router.post('/new', (req, res) => {
+    console.log(req.body.due_date);
     db.Todo.create({
         task_header: req.body.task_header,
         task_details: req.body.task_details,
