@@ -3,15 +3,11 @@ const router = express.Router();
 const db = require('../models');
 const Serializer = require('sequelize-to-json');
 
-const scheme = {
-    include: ['@all']
-}
-
 // Root to get all data needed to render
 router.get('/', (req, res) => {
     db.Todo.findAll().then(todos => {
         // Make todos into a JSON object
-        let todosAsJSON = Serializer.serializeMany(todos, db.Todo, scheme);
+        let todosAsJSON = Serializer.serializeMany(todos, db.Todo, {include: ['@all']});
         
         // get completed task count and add formated date key to each task
         let completedCount = 0;
