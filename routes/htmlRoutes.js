@@ -11,7 +11,7 @@ router.get('/', (req, res) => {
         // Make todos into a JSON object
         let todosAsJSON = Serializer.serializeMany(todos, db.Todo, {include: ['@all']});
         
-        // get completed task count and add formated date key to each task
+        // Get completed task count and add formated date key to each task
         let completedCount = 0;
         for (task of todosAsJSON) {
             if (task.status) {
@@ -24,11 +24,8 @@ router.get('/', (req, res) => {
             date = formatTime[2];
             task.formatedDate = `${month}/${date}`;
         };
-        console.log(todosAsJSON);
-        
-        
-        
 
+        // render index with handlebars object values
         res.render('index', {
             todos: todosAsJSON,
             activeCount: todosAsJSON.length - completedCount,

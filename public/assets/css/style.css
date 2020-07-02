@@ -53,20 +53,6 @@ header {
     display: block;
 }
 
-/* --- */
-
-
-/* --- */
-
-
-/* --- */
-
-
-/* --- */
-
-
-/* --- */
-
 
 /* Mobile Styling */
 @media only screen and (max-width: 768px) {
@@ -79,11 +65,4 @@ header {
     .task-content i {
         text-align: center;
     }
-
-    
-
-
-    /* --- */
-
-
 }
