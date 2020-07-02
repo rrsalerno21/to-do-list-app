@@ -47,7 +47,11 @@ header {
     border-color: linear-gradient(rgb(78, 242, 28), rgb(2, 172, 16));
 }
 
-/* Align Labels */
+
+/* Status label on its own line */
+#status-label {
+    display: block;
+}
 
 /* --- */
 
@@ -76,7 +80,7 @@ header {
         text-align: center;
     }
 
-    /* --- */
+    
 
 
     /* --- */
