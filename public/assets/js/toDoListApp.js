@@ -44,6 +44,8 @@ $(document).ready(() => {
                 } else {
                     $('.status-incomplete').click();
                 }
+            }).catch(() => {
+                throw new Error('Sorry, something went wrong with loading that to do...');
             })
         }
     });
@@ -77,7 +79,8 @@ $(document).ready(() => {
 
             // do a post to the server and then render the page
             $.post('/api/new', newTask)
-                .then(() => location.reload());
+                .then(() => location.reload())
+                .catch(() => alert('Something went wrong when trying to post'));
 
 
         } else if (method === 'EDIT') {
@@ -99,7 +102,10 @@ $(document).ready(() => {
             }).then(() => {
                 console.log('updated task successfully')
                 location.reload();
-            });
+            }).catch((err) => {
+                alert('Something went wrong when trying to update this task')
+                console.log(err)
+            })
         }
 
         // clear input values
@@ -118,6 +124,9 @@ $(document).ready(() => {
         }).then(() => {
             console.log('Successfully deleted object')
             location.reload();
+        }).catch((err) => {
+            console.log(err)
+            alert('Something went wrong when trying to delete this task')
         })
     });
 
@@ -137,6 +146,9 @@ $(document).ready(() => {
         }).then(() => {
             console.log('status update successful');
             location.reload();
+        }).catch((err) => {
+            console.log(err)
+            alert('Something went wrong when trying to mark this task as complete')
         })
     })
 
@@ -156,6 +168,9 @@ $(document).ready(() => {
         }).then(() => {
             console.log('status update successful');
             location.reload();
+        }).catch((err) => {
+            console.log(err)
+            alert('Something went wrong when trying to mark this task as incomplete')
         })
     })
 
@@ -170,6 +185,9 @@ $(document).ready(() => {
             }).then(() => {
                 console.log('All items successfully deleted')
                 location.reload();
+            }).catch((err) => {
+                console.log(err)
+                alert('Something went wrong when trying to delete all of your tasks')
             })
         } else {
             return;
