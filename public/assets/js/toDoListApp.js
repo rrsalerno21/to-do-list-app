@@ -50,8 +50,9 @@ $(document).ready(() => {
                 } else {
                     $('.status-incomplete').click();
                 }
-            }).catch(() => {
-                throw new Error('Sorry, something went wrong with loading that to do...');
+            }).catch((err) => {
+                console.log(err)
+                alert('Sorry, something went wrong with loading that to do...')
             })
         }
     });
