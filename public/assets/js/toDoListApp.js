@@ -66,6 +66,10 @@ $(document).ready(() => {
             taskStatus = true
         }
 
+        // validate inputs on submit
+        if (validateInputs())
+            return;
+
         // if adding
         if (method === 'ADD') {
             // create the new task as an object
@@ -237,5 +241,39 @@ $(document).ready(() => {
                 }
             }
         })
+    }
+
+    function validateInputs() {
+        const taskName = $(".task-name").val().trim(),
+            taskBody = $(".task-body").val().trim(),
+            taskDate = $(".task-due-date").val(),
+            acceptableCharacters = /[^A-Za-z0-9 .'?!,@$#\-_\n\r]/,
+            acceptableDatePattern = /^\d{4}\-\d{1,2}\-\d{1,2}$/
+
+            console.log(taskName, taskBody, taskDate, (acceptableCharacters.test(taskName)), (acceptableCharacters.test(taskBody)), !acceptableDatePattern.test(taskDate));
+        if (taskName === '') {
+            alert('Please include at least a task name');
+            clearInputs();
+            $(".task-name").focus();
+            return true
+        } else if ((acceptableCharacters.test(taskName))) {
+            alert(`Invalid characters included it your task name. \n (Only accepts alphanumeric and .'?!,@$#-_ characters)`)
+            clearInputs();
+        } else if (acceptableCharacters.test(taskBody)) {
+            alert(`Invalid characters included it your task details. \n (Only accepts alphanumeric and .'?!,@$#-_ characters)`)
+            clearInputs();
+            return true
+        } else if (!acceptableDatePattern.test(taskDate)) {
+            alert('Date format is invalid. \n (Only accepts YYYY-MM-DD)')
+            clearInputs();
+            return true
+        }
+        
+        return false;
+    }
+
+    function clearInputs() {
+        $(".task-name").empty();
+        $(".task-body").empty();
     }
 })
