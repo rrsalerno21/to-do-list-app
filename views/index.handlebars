@@ -2,24 +2,33 @@
     <h1>To-Do List App</h1>
 </header>
 
-<div class="container my-3">
-    <div class="d-flex w-100 justify-content-center">
-        <!-- Button trigger modal -->
+<!-- Main Container -->
+<main class="container my-3">
+
+    <!-- Container for buttons -->
+    <section class="d-flex w-100 justify-content-center">
+
+        <!-- Button to trigger modal for adding task -->
         <button type="button" class="btn my-gradient text-white mx-3" data-toggle="modal" data-target="#taskModal" data-whatever="ADD">
             Add To-Do
         </button>
 
+        <!-- Button to clear all tasks -->
         <button type="button" class="btn btn-secondary mx-3" id="clear-all-btn">
             Clear all tasks
         </button>
-    </div>
+    </section>
     
-    <!-- BEGIN ACTIVE FOLDER HERE -->
-    <div class="accordion my-3" id="F1Active">
+    <!-- Active Task accordian section container -->
+    <section class="accordion my-3" id="F1Active">
 
+        <!-- Main card to contain section -->
         <div class="card">
+
+            <!-- Card Header -->
             <div class="card-header" id="F1ActHeading">
                 <h2 class="mb-0">
+                    <!-- Button to toggle show of accordian; contains active task count badge -->
                     <button class="btn btn-light btn-block text-left" type="button" data-toggle="collapse"
                         data-target="#collapseF1Active" aria-expanded="true" aria-controls="collapseF1Active">
                         Active <span class="badge badge-light my-gradient text-white">{{activeCount}}</span>
@@ -27,9 +36,15 @@
                 </h2>
             </div>
 
+            <!-- Div that contains the content of the accordian -->
             <div id="collapseF1Active" class="collapse show" aria-labelledby="F1ActHeading" data-parent="#F1Active">
+                
+                <!-- Begin card body -->
                 <div class="card-body">
+
+                    <!-- Div that contains active tasks -->
                     <div class="list-group" id="activeListDiv">
+                        <!-- Handlebars partial here for todos with status=false -->
                         {{#each todos}}
                             {{#unless this.status}}
                                 {{> task-block status=false}}
@@ -39,16 +54,20 @@
                 </div>
             </div>
         </div>
-    </div>
-    <!-- END ACTIVE FOLDER HERE-->
+    </section>
+    <!-- End Active Folder Here-->
 
 
-    <!-- BEGIN COMPLETED FOLDER HERE -->
+    <!-- Completed Task accordian section container -->
     <div class="accordion my-3" id="F1Completed">
 
+        <!-- Main card to contain section -->
         <div class="card">
+
+            <!-- Card Header -->
             <div class="card-header" id="F1CompletedHeading">
                 <h2 class="mb-0">
+                    <!-- Button to toggle show of accordian; contains completed task count badge -->
                     <button class="btn btn-light btn-block text-left" type="button" data-toggle="collapse"
                         data-target="#collapseF1Completed" aria-expanded="true" aria-controls="collapseF1Completed">
                         Completed <span class="badge badge-light bg-secondary text-white">{{completedCount}}</span>
@@ -56,10 +75,16 @@
                 </h2>
             </div>
 
+            <!-- Div that contains the content of the accordian -->
             <div id="collapseF1Completed" class="collapse" aria-labelledby="F1DeletedHeading"
                 data-parent="#F1Completed">
+
+                <!-- Begin card body -->
                 <div class="card-body">
+
+                    <!-- Div that contains completed tasks -->
                     <div class="list-group" id="completedListDiv">
+                        <!-- Handlebars partial here for todos with status=true -->
                         {{#each todos}}
                             {{#if this.status}}
                                 {{> task-block status=true}}
@@ -70,39 +95,51 @@
             </div>
         </div>
     </div>
-    <!-- END COMPLETED FOLDER HERE-->
+    <!-- End Completed Folder Here-->
 
-    <!-- BEGIN MODAL HERE -->
-
-
-    <!-- Modal -->
-    <div class="modal fade" id="taskModal" tabindex="-1" role="dialog" aria-labelledby="taskModalTitle"
+    
+    <!-- BS Modal Section For Adding/Editing Tasks-->
+    <section class="modal fade" id="taskModal" tabindex="-1" role="dialog" aria-labelledby="taskModalTitle"
         aria-hidden="true">
+        <!-- Centered modal via class "modal-dialog-centered" -->
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
+
+                    <!-- Modal Header -->
                     <h5 class="modal-title" id="taskModalTitle">ADD &/OR UPDATE Task</h5>
+
+                    <!-- Close Modal X -->
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
+
+                <!-- Begin Modal Body -->
                 <div class="modal-body">
+
+                    <!-- Modal Form Container -->
                     <div class="form-container">
+
+                        <!-- Form Group for task_header -->
                         <div class="form-group">
                             <label for="task_header"><strong>Task Name:</strong> </label>
                             <input class="form-control task-name" id="task-name" type="text" name="task_header">
                         </div>
 
+                        <!-- Form Group for task_details -->
                         <div class="form-group">
                             <label for="task_details"><strong>Task Details:</strong></label>
                             <textarea class="form-control task-body" name="task_details"></textarea>
                         </div>
 
+                        <!-- Form Group for task_due_date -->
                         <div class="form-group">
                             <label for="task_due_date"><strong>Due Date:</strong></label>
                             <input type="date" class="form-control task-due-date" name="task_due_date">
                         </div>
 
+                        <!-- Form Group for task_status -->
                         <div class="form-group">
                             <label for="task_status" id="status-label"><strong>Is this task already completed?</strong></label>
                             <div class="form-check form-check-inline">
@@ -116,25 +153,29 @@
                             </div>
                         </div>
                     </div>
-
-
-
                 </div>
+
+                <!-- Modal footer for buttons to close and add/edit task -->
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     <button type="button" class="btn my-gradient text-white" id="modal-act-button" data-method="ADD">Add Task</button>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 
 
-</div>
+</main>
 
+<!-- Script for BootStrap Popper -->
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
     integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
     crossorigin="anonymous"></script>
+
+<!-- Script for BootStrap -->
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
     integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
     crossorigin="anonymous"></script>
+
+<!-- Public Script -->
 <script src="assets/js/toDoListApp.js" type="text/javascript"></script>
