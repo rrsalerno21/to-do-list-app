@@ -5,13 +5,18 @@ $(document).ready(() => {
 
     // Alter Modal Content based on Add or Edit
     $('#taskModal').on('show.bs.modal', function (event) {
+        
         // define which button is being clicked and the type of modal we're opening
         let button = $(event.relatedTarget);
         let type = button.data('whatever');
         let modal = $(this);
-
+        
         // if we're adding a task
         if (type === 'ADD') {
+            
+            // Clear any existing values in modal
+            clearInputs('all');
+
             // Update the modal's header and button text
             modal.find('.modal-title').text('ADD A TASK');
             $('#modal-act-button')
@@ -119,9 +124,6 @@ $(document).ready(() => {
                 console.log(err)
             })
         }
-
-        // finally, clear input values
-        clearInputs();
     });
 
     // Delete a task
@@ -284,35 +286,44 @@ $(document).ready(() => {
             acceptableCharacters = /[^A-Za-z0-9 .'?!,@$#\-_\n\r]/,
             acceptableDatePattern = /^\d{4}\-\d{1,2}\-\d{1,2}$/
 
-        // If empty string in task header, alert message, clear inputs, focus on task name, and return true
+        // If empty string in task header, alert message, focus on task name, and return true
         if (taskName === '') {
             alert('Please include at least a task name');
-            clearInputs();
             $(".task-name").focus();
             return true
-        // If invalid characters in task header, alert message, clear inputs, focus on task name, and return true
+        // If invalid characters in task header, alert message, clear name input, focus on task name, and return true
         } else if ((acceptableCharacters.test(taskName))) {
             alert(`Invalid characters included it your task name. \n (Only accepts alphanumeric and .'?!,@$#-_ characters)`)
-            clearInputs();
-            
-        // If invalid characters in task body, alert message, clear inputs, focus on task name, and return true
+            clearInputs('name');
+            $(".task-name").focus();
+            return true;
+        // If invalid characters in task body, alert message, clear body input, focus on task name, and return true
         } else if (acceptableCharacters.test(taskBody)) {
             alert(`Invalid characters included it your task details. \n (Only accepts alphanumeric and .'?!,@$#-_ characters)`)
-            clearInputs();
-
+            clearInputs('body');
+            $(".task-body").focus();
             return true
-        // If ever invalid date format, alert message,
+        // If ever invalid date format, alert message, focus on date, and return true
         } else if (!acceptableDatePattern.test(taskDate)) {
             alert('Date format is invalid. \n (Only accepts YYYY-MM-DD)');
-
+            $(".task-due-date").focus();
             return true
         }
         
         return false;
     }
 
-    function clearInputs() {
-        $(".task-name").empty();
-        $(".task-body").empty();
+    function clearInputs(value) {
+        switch (value) {
+            case 'all':
+                $(".task-name").val('');
+                $(".task-body").val('');
+                break;
+            case 'name':
+                $(".task-name").val('');
+                break;
+            case 'body':
+                $(".task-body").val('');
+        }
     }
 })
