@@ -26,6 +26,6 @@ app.use(htmlRoutes)
 // Sync sequelize db then listen to server
 db.sequelize.sync().then(() => {
     app.listen(PORT, () => {
-        console.log(`listening on: http://localhost:${PORT}`);
+        console.log(`App listening on port: ${PORT}`);
     });
 });
