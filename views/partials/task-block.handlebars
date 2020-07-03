@@ -4,7 +4,7 @@
     <!-- Div for task header and due date-->
     <div class="d-flex w-100 justify-content-between">
         <!-- Header -->
-        <h5 class="mb-1">
+        <h5 class="mb-1 click-to-edit" data-taskId={{this.id}}>
             {{#if this.status}}
                 <del>{{this.task_header}}</del>
             {{else}}
@@ -20,7 +20,7 @@
     <div class="d-sm-flex w-100 justify-content-between">
         
         <!-- Task Details -->
-        <p class="mb-1">
+        <p class="mb-1 click-to-edit" data-taskId={{this.id}}>
             {{#if this.status}} 
                 <del>{{this.task_details}}</del> 
             {{else}} 

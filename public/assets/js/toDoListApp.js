@@ -10,6 +10,7 @@ $(document).ready(() => {
         let button = $(event.relatedTarget);
         let type = button.data('whatever');
         let modal = $(this);
+        console.log(modal);
         
         // if we're adding a task
         if (type === 'ADD') {
@@ -61,6 +62,15 @@ $(document).ready(() => {
             })
         }
     });
+
+    // Load edit details when task header or task details are clicked
+    $('.click-to-edit').on('click', function() {
+        // Select the task id from the area clicked
+        let taskID = $(this).data('taskid');
+
+        // find the icon to edit that class and click on it
+        $(`i[class='btn fas fa-edit text-muted icon-med-size edit-task-btn'][data-taskid=${taskID}]`).click();
+    })
 
     // Add or edit a task
     $('#modal-act-button').on('click', function (event) {
