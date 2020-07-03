@@ -1,0 +1,22 @@
+{
+  "development": {
+    "username": "root",
+    "password": "Youcandothis17*",
+    "database": "to_do_DB",
+    "host": "127.0.0.1",
+    "dialect": "mysql",
+    "operatorsAliases": 0
+  },
+  "test": {
+    "username": "root",
+    "password": null,
+    "database": "database_test",
+    "host": "127.0.0.1",
+    "dialect": "mysql",
+    "operatorsAliases": false
+  },
+  "production": {
+    "use_evn_variable": "JAWSDB_URL",
+    "dialect": "mysql"
+  }
+}
