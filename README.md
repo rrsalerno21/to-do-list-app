@@ -5,7 +5,7 @@
 
 ## Description 
 
-Full stack web application for adding, editing, and deleting a to do list. Deployed here: 
+Full stack web application for adding, editing, and deleting a to do list. Deployed here: https://safe-crag-88630.herokuapp.com/
 
 
 ## Technologies Used
